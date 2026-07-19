@@ -5,6 +5,7 @@ import Navbar from '../components/Navbar';
 import HeroSection from '../components/HeroSection';
 import InputSection from '../components/InputSection';
 import AgentPipeline from '../components/AgentPipeline';
+import LoadingMessages from '../components/LoadingMessages';
 import ResultsSection from '../components/ResultsSection';
 import Footer from '../components/Footer';
 import { HavenRequest, HavenResponse } from '../types';
@@ -95,6 +96,9 @@ export default function Home() {
         <div ref={pipelineRef} className="my-8">
           <AgentPipeline activeStep={activeStep} />
         </div>
+
+        {/* Rotating reassurance messages while the agents work */}
+        {isLoading && <LoadingMessages />}
 
         {/* Results Section */}
         {results && (
