@@ -17,6 +17,7 @@ export interface HavenResponse {
   translated_input: string;
   situation_summary: string;
   urgent_needs: string[];
+  severity: string;
   generated_document: string | null;
   nearby_resources: NearbyResource[];
   emotional_support: string;

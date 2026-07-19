@@ -12,7 +12,7 @@ from groq import Groq
 from agents.utils import extract_json
 from prompts.resource_prompt import RESOURCE_PROMPT
 
-load_dotenv()
+load_dotenv(override=True)
 
 GROQ_MODEL = os.getenv("GROQ_MODEL", "llama-3.1-8b-instant")
 

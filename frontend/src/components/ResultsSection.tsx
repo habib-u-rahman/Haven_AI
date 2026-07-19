@@ -43,17 +43,28 @@ export default function ResultsSection({ data }: ResultsSectionProps) {
     document.body.removeChild(element);
   };
 
-  // Helper to map detected language string to emoji/code
+  // Helper to map detected language string to emoji/code.
+  // Full names (or exact ISO codes) only — substring checks on short codes
+  // mislabel languages like Dari ("ar") or Portuguese ("es").
   const getLangBadge = (lang: string) => {
-    const l = lang.toLowerCase();
-    if (l.includes('arabic') || l.includes('ar')) return '🇸🇦 Arabic';
-    if (l.includes('ukrain') || l.includes('uk')) return '🇺🇦 Ukrainian';
-    if (l.includes('spanish') || l.includes('es')) return '🇪🇸 Spanish';
-    if (l.includes('french') || l.includes('fr')) return '🇫🇷 French';
-    if (l.includes('german') || l.includes('de')) return '🇩🇪 German';
-    if (l.includes('pashto') || l.includes('ps') || l.includes('dari')) return '🇦🇫 Pashto / Dari';
-    if (l.includes('russian') || l.includes('ru')) return '🇷🇺 Russian';
+    const l = lang.toLowerCase().trim();
+    if (l.includes('pashto') || l.includes('dari') || l === 'ps') return '🇦🇫 Pashto / Dari';
+    if (l.includes('arabic') || l === 'ar') return '🇸🇦 Arabic';
+    if (l.includes('ukrain') || l === 'uk') return '🇺🇦 Ukrainian';
+    if (l.includes('spanish') || l === 'es') return '🇪🇸 Spanish';
+    if (l.includes('french') || l === 'fr') return '🇫🇷 French';
+    if (l.includes('german') || l === 'de') return '🇩🇪 German';
+    if (l.includes('russian') || l === 'ru') return '🇷🇺 Russian';
     return `🌐 ${lang}`;
+  };
+
+  // Severity comes from the Situation Agent: low | medium | high | critical
+  const severity = (data.severity || 'medium').toLowerCase();
+  const severityStyles: Record<string, string> = {
+    critical: 'bg-[#DC2626]/10 text-[#DC2626] border-[#DC2626]/20',
+    high: 'bg-orange-50 text-orange-600 border-orange-200',
+    medium: 'bg-amber-50 text-amber-600 border-amber-200',
+    low: 'bg-emerald-50 text-emerald-600 border-emerald-200',
   };
 
   return (
@@ -79,7 +90,10 @@ export default function ResultsSection({ data }: ResultsSectionProps) {
           </span>
         </div>
 
-        <div className="bg-cyan-50/50 border border-cyan-100 rounded-xl p-5 sm:p-6 text-gray-800 text-lg sm:text-xl leading-relaxed font-medium">
+        <div
+          dir="auto"
+          className="bg-cyan-50/50 border border-cyan-100 rounded-xl p-5 sm:p-6 text-gray-800 text-lg sm:text-xl leading-relaxed font-medium whitespace-pre-line"
+        >
           {data.response_in_user_language || data.final_response}
         </div>
       </div>
@@ -91,8 +105,12 @@ export default function ResultsSection({ data }: ResultsSectionProps) {
             <AlertCircle className="w-6 h-6 text-[#0891B2]" />
             <h3 className="text-xl font-bold text-[#1A1A2E]">Situation Assessment</h3>
           </div>
-          <span className="bg-[#DC2626]/10 text-[#DC2626] border border-[#DC2626]/20 font-bold px-3 py-1 rounded-full text-xs uppercase tracking-wider">
-            High Severity
+          <span
+            className={`border font-bold px-3 py-1 rounded-full text-xs uppercase tracking-wider ${
+              severityStyles[severity] ?? 'bg-gray-100 text-gray-600 border-gray-200'
+            }`}
+          >
+            {severity} Severity
           </span>
         </div>
 
@@ -154,7 +172,7 @@ export default function ResultsSection({ data }: ResultsSectionProps) {
             <Building2 className="w-6 h-6 text-[#0891B2]" />
             <div>
               <h3 className="text-xl font-bold text-[#1A1A2E]">Nearby Humanitarian Resources</h3>
-              <p className="text-xs text-gray-500">Verified contacts and support centers in your area</p>
+              <p className="text-xs text-gray-500">AI-suggested organizations — please verify contact details before relying on them</p>
             </div>
           </div>
 

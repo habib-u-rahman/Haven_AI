@@ -43,6 +43,7 @@ def haven(request: HavenRequest):
         situation = run_situation_agent(translated_input, request.location)
         situation_summary = situation["situation_summary"]
         urgent_needs = situation["urgent_needs"]
+        severity = situation["severity"]
     except Exception as e:
         print(f"[Situation Agent] FAILED: {e} — using generic assessment.")
         situation_summary = (
@@ -50,6 +51,7 @@ def haven(request: HavenRequest):
             "Their full situation could not be automatically analyzed."
         )
         urgent_needs = ["shelter", "food", "legal"]
+        severity = "medium"
 
     # ---- 3. Document Agent: official letter (only if requested) ----
     generated_document = None
@@ -129,6 +131,7 @@ def haven(request: HavenRequest):
         translated_input=translated_input,
         situation_summary=situation_summary,
         urgent_needs=urgent_needs,
+        severity=severity,
         generated_document=generated_document,
         nearby_resources=nearby_resources,
         emotional_support=emotional_support,

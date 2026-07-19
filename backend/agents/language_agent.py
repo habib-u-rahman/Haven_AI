@@ -13,11 +13,11 @@ from dotenv import load_dotenv
 from agents.utils import extract_json
 from prompts.language_prompt import LANGUAGE_PROMPT, TRANSLATE_BACK_PROMPT
 
-load_dotenv()
+load_dotenv(override=True)
 
-# gemini-1.5-flash has been retired by Google; gemini-2.0-flash is the free-tier
-# successor. Override with GEMINI_MODEL in .env if needed.
-GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.0-flash")
+# Pinned flash versions are unavailable to new API projects; the -latest alias
+# always resolves to an accessible model. Override with GEMINI_MODEL in .env if needed.
+GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-flash-latest")
 
 _configured = False
 

@@ -12,7 +12,7 @@ from openai import OpenAI
 from agents.utils import extract_json
 from prompts.situation_prompt import SITUATION_PROMPT
 
-load_dotenv()
+load_dotenv(override=True)
 
 OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-4o")
 

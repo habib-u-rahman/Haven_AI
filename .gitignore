@@ -18,3 +18,8 @@ out/
 .DS_Store
 Thumbs.db
 .vscode/
+
+# Local test artifacts
+server.log
+backend/response.json
+*.tsbuildinfo

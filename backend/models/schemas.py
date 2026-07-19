@@ -21,6 +21,7 @@ class HavenResponse(BaseModel):
     translated_input: str
     situation_summary: str
     urgent_needs: List[str]
+    severity: str = "medium"
     generated_document: Optional[str] = None
     nearby_resources: List[dict]
     emotional_support: str
