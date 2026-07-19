@@ -40,7 +40,24 @@ body {
 
 /* Custom Animation Classes */
 .fade-in {
-  animation: fadeIn 0.5s ease forwards;
+  animation: fadeIn 0.5s ease both;
+}
+
+/* Blinking cursor for the Typewriter component (ChatGPT-style reveal) */
+.type-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  margin-left: 3px;
+  vertical-align: -0.15em;
+  background: #0891b2;
+  animation: blink 0.9s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
 }
 
 .slide-up {

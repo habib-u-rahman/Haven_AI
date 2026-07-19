@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { HavenResponse } from '../types';
+import Typewriter from './Typewriter';
 import {
   AlertCircle,
   MapPin,
@@ -85,11 +86,11 @@ export default function ResultsSection({ data }: ResultsSectionProps) {
     site.startsWith('http') ? site : `https://${site}`;
 
   return (
-    <section className="py-12 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto space-y-6 fade-in">
+    <section className="py-12 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto space-y-6">
       {/* 1. Response in the user's own language — only shown when they didn't
           write in English (for English users it would duplicate the cards below) */}
       {!isEnglish && (
-        <div className="bg-white rounded-2xl shadow-sm border-2 border-[#0891B2]/30 p-6 sm:p-8">
+        <div className="fade-in bg-white rounded-2xl shadow-sm border-2 border-[#0891B2]/30 p-6 sm:p-8">
           <div className="flex items-center justify-between border-b border-gray-100 pb-4 mb-6">
             <div className="flex items-center space-x-3">
               <div className="p-3 bg-[#0891B2]/10 rounded-xl text-[#0891B2]">
@@ -109,26 +110,32 @@ export default function ResultsSection({ data }: ResultsSectionProps) {
             dir="auto"
             className="bg-cyan-50/50 border border-cyan-100 rounded-xl p-5 sm:p-6 text-gray-800 text-lg leading-relaxed font-medium whitespace-pre-line"
           >
-            {data.response_in_user_language || data.final_response}
+            <Typewriter text={data.response_in_user_language || data.final_response} speed={22} />
           </div>
         </div>
       )}
 
-      {/* 2. Warm support message — the first thing an English reader sees */}
+      {/* 2. Warm support message — typed out like a live chat reply */}
       {data.emotional_support && (
-        <div className="bg-white rounded-2xl shadow-sm border-l-4 border-rose-300 border-r border-t border-b border-gray-100 p-6 sm:p-8">
+        <div
+          className="fade-in bg-white rounded-2xl shadow-sm border-l-4 border-rose-300 border-r border-t border-b border-gray-100 p-6 sm:p-8"
+          style={{ animationDelay: '0.2s' }}
+        >
           <div className="flex items-center space-x-3 mb-3">
             <Heart className="w-6 h-6 text-rose-500 fill-rose-500" />
             <h3 className="text-xl font-bold text-[#1A1A2E]">A Message for You</h3>
           </div>
-          <p className="text-gray-700 text-base sm:text-lg leading-relaxed">
-            {data.emotional_support}
+          <p className="text-gray-700 text-base sm:text-lg leading-relaxed whitespace-pre-line">
+            <Typewriter text={data.emotional_support} speed={26} startDelay={isEnglish ? 200 : 900} />
           </p>
         </div>
       )}
 
       {/* 3. Situation Assessment */}
-      <div className="bg-white rounded-2xl shadow-sm border-l-4 border-[#0891B2] border-r border-t border-b border-gray-100 p-6 sm:p-8">
+      <div
+        className="fade-in bg-white rounded-2xl shadow-sm border-l-4 border-[#0891B2] border-r border-t border-b border-gray-100 p-6 sm:p-8"
+        style={{ animationDelay: '0.4s' }}
+      >
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center space-x-3">
             <AlertCircle className="w-6 h-6 text-[#0891B2]" />
@@ -144,7 +151,7 @@ export default function ResultsSection({ data }: ResultsSectionProps) {
         </div>
 
         <p className="text-gray-700 text-base sm:text-lg mb-5 leading-relaxed">
-          {data.situation_summary}
+          <Typewriter text={data.situation_summary} speed={24} startDelay={1200} />
         </p>
 
         {data.urgent_needs && data.urgent_needs.length > 0 && (
@@ -166,7 +173,10 @@ export default function ResultsSection({ data }: ResultsSectionProps) {
 
       {/* 4. Next Steps */}
       {data.next_steps && data.next_steps.length > 0 && (
-        <div className="bg-white rounded-2xl shadow-sm border-l-4 border-[#16A34A] border-r border-t border-b border-gray-100 p-6 sm:p-8">
+        <div
+          className="fade-in bg-white rounded-2xl shadow-sm border-l-4 border-[#16A34A] border-r border-t border-b border-gray-100 p-6 sm:p-8"
+          style={{ animationDelay: '0.6s' }}
+        >
           <div className="flex items-center space-x-3 mb-6">
             <ListOrdered className="w-6 h-6 text-[#16A34A]" />
             <h3 className="text-xl font-bold text-[#1A1A2E]">Your Next Steps</h3>
@@ -189,7 +199,10 @@ export default function ResultsSection({ data }: ResultsSectionProps) {
 
       {/* 5. Nearby Resources with full contact details */}
       {data.nearby_resources && data.nearby_resources.length > 0 && (
-        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 sm:p-8">
+        <div
+          className="fade-in bg-white rounded-2xl shadow-sm border border-gray-200 p-6 sm:p-8"
+          style={{ animationDelay: '0.8s' }}
+        >
           <div className="flex items-center space-x-3 mb-6">
             <Building2 className="w-6 h-6 text-[#0891B2]" />
             <div>
@@ -257,7 +270,10 @@ export default function ResultsSection({ data }: ResultsSectionProps) {
 
       {/* 6. Generated Document — styled as a paper letter */}
       {data.generated_document && (
-        <div className="bg-white rounded-2xl shadow-sm border-2 border-amber-200 p-6 sm:p-8">
+        <div
+          className="fade-in bg-white rounded-2xl shadow-sm border-2 border-amber-200 p-6 sm:p-8"
+          style={{ animationDelay: '1s' }}
+        >
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-gray-100 pb-4 mb-6">
             <div className="flex items-center space-x-3">
               <div className="p-3 bg-amber-100 text-amber-700 rounded-xl">
