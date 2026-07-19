@@ -1,0 +1,10 @@
+openai
+google-generativeai
+groq
+fastapi
+uvicorn
+python-dotenv
+requests
+pydantic
+httpx
+python-multipart
