@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Shield, Radio } from 'lucide-react';
+import { Shield } from 'lucide-react';
 
 export default function Navbar() {
   return (
@@ -26,11 +26,7 @@ export default function Navbar() {
 
         {/* 24/7 Availability Badge */}
         <div className="flex items-center space-x-2 bg-black/15 px-3 py-1.5 rounded-full border border-white/10">
-          <span className="relative flex h-2.5 w-2.5">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
-          </span>
-          <Radio className="w-3.5 h-3.5 text-emerald-300" />
+          <span className="inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400"></span>
           <span className="text-xs font-semibold tracking-wide text-white">
             Available 24/7
           </span>

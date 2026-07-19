@@ -90,12 +90,11 @@ export default function Home() {
           </div>
         )}
 
-        {/* Agent Pipeline (Visible during analysis or step tracking) */}
-        {(isLoading || activeStep > 0) && (
-          <div ref={pipelineRef} className="my-8">
-            <AgentPipeline activeStep={activeStep === 6 ? 6 : activeStep} />
-          </div>
-        )}
+        {/* Agent Pipeline — always visible: idle it explains "How it works",
+            during analysis it shows live progress */}
+        <div ref={pipelineRef} className="my-8">
+          <AgentPipeline activeStep={activeStep} />
+        </div>
 
         {/* Results Section */}
         {results && (

@@ -21,9 +21,10 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Center: AI Models */}
-          <div className="text-xs text-gray-400 font-medium bg-white/5 px-4 py-2 rounded-full border border-white/10">
-            Powered by <span className="text-cyan-400">GPT-4o</span> · <span className="text-amber-400">Gemini Flash</span> · <span className="text-purple-400">Groq LLaMA</span>
+          {/* Center: honest scope disclaimer */}
+          <div className="text-xs text-gray-400 font-medium max-w-md text-center">
+            HavenAI offers AI guidance, not legal advice. If you are in immediate
+            danger, contact local emergency services first.
           </div>
 
           {/* Right: Hackathon Info */}

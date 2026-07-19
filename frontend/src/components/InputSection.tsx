@@ -35,7 +35,7 @@ export default function InputSection({ onSubmit, isLoading }: InputSectionProps)
   };
 
   return (
-    <section id="get-help" className="py-12 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+    <section id="get-help" className="scroll-mt-20 py-12 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
       <div className="bg-white rounded-2xl shadow-xl border-t-4 border-[#0891B2] border-x border-b border-gray-100 p-6 sm:p-10 slide-up">
         {/* Card Header */}
         <div className="flex items-center space-x-3 mb-6 border-b border-gray-100 pb-4">
@@ -65,6 +65,7 @@ export default function InputSection({ onSubmit, isLoading }: InputSectionProps)
               Describe your situation
             </label>
             <textarea
+              id="situation-input"
               rows={5}
               disabled={isLoading}
               value={message}
