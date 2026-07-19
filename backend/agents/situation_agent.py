@@ -41,6 +41,7 @@ def run_situation_agent(translated_message: str, location: str) -> dict:
     response = client.chat.completions.create(
         model=OPENAI_MODEL,
         temperature=0.3,
+        max_tokens=400,
         messages=[
             {"role": "system", "content": SITUATION_PROMPT},
             {

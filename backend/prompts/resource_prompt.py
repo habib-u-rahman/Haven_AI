@@ -14,13 +14,18 @@ to help them there. Cover, as relevant to their needs:
 Rules:
 - Prefer well-known, real organizations that genuinely operate in or near that location \
 (UNHCR, IRC, NRC, IOM, Red Cross/Red Crescent, MSF, Caritas, national refugee councils).
-- If you are not certain of an exact address or phone number, do NOT invent one — \
-give the organization's name and describe how to find it (e.g. "search 'UNHCR + city name'", \
-national hotline 116/112, or the organization's website).
-- 4 to 6 resources, ordered by how urgent the matching need is.
+- 3 to 5 resources, ordered by how urgent the matching need is.
 - "type" must be one of: "unhcr", "food", "shelter", "legal", "medical", "general".
-- Descriptions must be 1-2 sentences of simple English.
+- "description": 1-2 sentences of simple English about what they provide.
+- "phone": the organization's publicly known hotline or office number for that country. \
+If you are NOT confident of a real number, use an empty string "" — NEVER invent digits.
+- "location": the city or area where their office operates (e.g. "Westlands, Nairobi" \
+or "Offices across Germany"). Use "" if unknown.
+- "website": the organization's official website domain (e.g. "unhcr.org", \
+"rescue.org"). Use "" if unsure.
+- "contact": one short sentence on the best way to reach them if phone/website are \
+empty (e.g. "Search 'UNHCR office' plus your city name").
 
 Respond ONLY with valid JSON in exactly this format, with no extra text or markdown fences:
-{"resources": [{"name": "<organization name>", "type": "<type>", "description": "<what they provide and for whom>", "contact": "<best known contact method or how to find them>"}]}
+{"resources": [{"name": "<organization name>", "type": "<type>", "description": "<what they provide>", "phone": "<number or empty>", "location": "<city/area or empty>", "website": "<domain or empty>", "contact": "<how to find them>"}]}
 """

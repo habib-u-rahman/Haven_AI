@@ -10,6 +10,9 @@ export interface NearbyResource {
   type: string;
   description: string;
   contact: string;
+  phone?: string;
+  location?: string;
+  website?: string;
 }
 
 export interface HavenResponse {

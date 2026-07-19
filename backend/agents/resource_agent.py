@@ -42,6 +42,7 @@ def run_resource_agent(location: str, urgent_needs: list) -> list:
     response = client.chat.completions.create(
         model=GROQ_MODEL,
         temperature=0.2,
+        max_tokens=1000,
         messages=[
             {"role": "system", "content": RESOURCE_PROMPT},
             {
@@ -59,6 +60,9 @@ def run_resource_agent(location: str, urgent_needs: list) -> list:
             "name": str(r.get("name", "Unknown organization")),
             "type": str(r.get("type", "general")),
             "description": str(r.get("description", "")),
+            "phone": str(r.get("phone", "")),
+            "location": str(r.get("location", "")),
+            "website": str(r.get("website", "")),
             "contact": str(r.get("contact", "Search online for the nearest office")),
         }
         for r in resources

@@ -42,6 +42,7 @@ def run_document_agent(situation_summary: str, location: str) -> str:
     response = client.chat.completions.create(
         model=OPENAI_MODEL,
         temperature=0.4,
+        max_tokens=900,
         messages=[
             {"role": "system", "content": DOCUMENT_PROMPT},
             {

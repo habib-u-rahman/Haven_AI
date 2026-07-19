@@ -41,6 +41,7 @@ def run_support_agent(situation_summary: str, urgent_needs: list) -> dict:
     response = client.chat.completions.create(
         model=GROQ_MODEL,
         temperature=0.6,
+        max_tokens=500,
         messages=[
             {"role": "system", "content": SUPPORT_PROMPT},
             {
